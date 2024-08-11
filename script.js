@@ -1,4 +1,3 @@
-
 // function that returns a random choice between rock, paper, and scissors
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3);
@@ -47,18 +46,71 @@ function playRound(humanChoice, computerChoice) {
     
 }
 
-function playGame() {
-    for (let round = 1; round <= 5; round++) {
-        alert(`Round ${round}! Please make your selection`);
+const body = document.querySelector("body")
+const scissorBtn = document.createElement("button");
+scissorBtn.textContent = "Scissors";
+const paperBtn = document.createElement("button");
+paperBtn.textContent = "Paper";
+const rockBtn = document.createElement("button");
+rockBtn.textContent = "Rock";
+body.appendChild(scissorBtn);
+body.appendChild(paperBtn);
+body.appendChild(rockBtn);
 
-        let human_choice = getHumanChoice();
+const scoreBoard = document.createElement("div");
+scoreBoard.textContent = `User: ${humanScore} CPU: ${computerScore}`
+body.appendChild(scoreBoard)
 
-        let computer_choice = getComputerChoice();
-
-        playRound(human_choice, computer_choice);
-
-        alert(`Good fight! The score is currently ${humanScore} to ${computerScore}`);
+scissorBtn.addEventListener("click", () => {
+    playRound("scissors", getComputerChoice())
+    if (humanScore == 5) {
+        scoreBoard.textContent = "You won!";
+        paperBtn.remove();
+        scissorBtn.remove();
+        rockBtn.remove();
+    } else if (computerScore == 5) {
+        scoreBoard.textContent = "You've lost!";
+        paperBtn.remove();
+        scissorBtn.remove();
+        rockBtn.remove();
+    } else {
+        scoreBoard.textContent = `User: ${humanScore} CPU: ${computerScore}`;
     }
-}
+});
+paperBtn.addEventListener("click", () => {
+    playRound("paper", getComputerChoice())
+    if (humanScore == 5) {
+        scoreBoard.textContent = "You won!";
+        paperBtn.remove();
+        scissorBtn.remove();
+        rockBtn.remove();
+    } else if (computerScore == 5) {
+        scoreBoard.textContent = "You've lost!";
+        paperBtn.remove();
+        scissorBtn.remove();
+        rockBtn.remove();
+    } else {
+        scoreBoard.textContent = `User: ${humanScore} CPU: ${computerScore}`;
+    }
+});
+rockBtn.addEventListener("click", () => {
+    playRound("rock", getComputerChoice())
+    if (humanScore == 5) {
+        scoreBoard.textContent = "You won!";
+        paperBtn.remove();
+        scissorBtn.remove();
+        rockBtn.remove();
+    } else if (computerScore == 5) {
+        scoreBoard.textContent = "You've lost!";
+        paperBtn.remove();
+        scissorBtn.remove();
+        rockBtn.remove();
+    } else {
+        scoreBoard.textContent = `User: ${humanScore} CPU: ${computerScore}`;
+    }
+});
+// paperBtn.addEventListener("click", playRound("paper", getComputerChoice()));
+// rockBtn.addEventListener("click", playRound("rock", getComputerChoice()));
 
-playGame();
+
+// playGame();
